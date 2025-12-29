@@ -11,7 +11,7 @@ library(DT)
 # ---- css pour le style de l'appli ----
 
 mon_css <- "
-/* police de caractères */
+/* police  */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 body {
@@ -718,7 +718,7 @@ navbarPage(
     title = "Dashboard",
     icon = icon("chart-line"),
     
-    # --- En-tête de la page ---
+    # --- en-tête de la page ---
     fluidRow(
       column(
         width = 12,
@@ -730,7 +730,7 @@ navbarPage(
       )
     ),
     
-    # --- Zone des filtres ---
+    # --- zone des filtres ---
     fluidRow(
       column(
         width = 12,
@@ -819,7 +819,7 @@ navbarPage(
       )
     ),
     
-    # --- Cartes KPI (4 indicateurs) ---
+    # --- cartes kpi (4 indicateurs) ---
     fluidRow(
       # kpi 1 : total campagnes
       column(
@@ -866,21 +866,23 @@ navbarPage(
       )
     ),
     
-    # --- Graphiques principaux ---
+    # --- graphique principal : évolution trimestrielle (pleine largeur) ---
     fluidRow(
-      # graphique d'évolution
       column(
-        width = 8,
+        width = 12,
         div(
           class = "chart-container",
           div(class = "chart-title", "Évolution Trimestrielle"),
-          plotlyOutput("plot_evolution", height = "450px")
+          plotlyOutput("plot_evolution", height = "400px")
         )
-      ),
-      
-      # top catégories
+      )
+    ),
+    
+    # --- graphiques secondaires : top/flop + distribution ---
+    fluidRow(
+      # top/flop catégories
       column(
-        width = 4,
+        width = 6,
         div(
           class = "chart-container",
           div(
@@ -895,13 +897,10 @@ navbarPage(
               title = "Inverser Top/Flop"
             )
           ),
-          plotlyOutput("plot_categories", height = "450px")
+          plotlyOutput("plot_categories", height = "400px")
         )
-      )
-    ),
-    
-    # --- Graphiques secondaires ---
-    fluidRow(
+      ),
+      
       # distribution des montants
       column(
         width = 6,
@@ -910,11 +909,13 @@ navbarPage(
           div(class = "chart-title", "Distribution des Montants"),
           plotlyOutput("plot_distribution", height = "400px")
         )
-      ),
-      
-      # taux de réussite par catégorie
+      )
+    ),
+    
+    # --- taux de réussite par catégorie (pleine largeur) ---
+    fluidRow(
       column(
-        width = 6,
+        width = 12,
         div(
           class = "chart-container",
           div(
@@ -929,20 +930,7 @@ navbarPage(
               title = "Inverser Réussite/Échec"
             )
           ),
-          plotlyOutput("plot_success_rate", height = "400px")
-        )
-      )
-    ),
-    
-    # --- Graphique supplémentaire ---
-    fluidRow(
-      # objectif vs montant levé
-      column(
-        width = 12,
-        div(
-          class = "chart-container",
-          div(class = "chart-title", "Objectif vs Montant Levé"),
-          plotlyOutput("plot_objectif_montant", height = "400px")
+          plotlyOutput("plot_success_rate", height = "350px")
         )
       )
     )
@@ -1096,17 +1084,16 @@ navbarPage(
           
           h3("Développement"),
           p("Nous sommes 2 étudiants en master DSMS à l'UBS et nous avons développé cette application 
-         dans le cadre de notre projet de visualisation. On s'est aidé de Claude 
-         pour nous débloquer sur certains points techniques."),
-          p("Côté technique, l'appli tourne avec R Shiny qui permet de faire des applis 
-         web en R. Pour manipuler les données on a utilisé tidyverse (dplyr, ggplot2...), 
-         les graphiques interactifs sont faits avec plotly et le tableau avec DT. 
-         Pour les devises, on utilise priceR qui va chercher les taux de change 
-         automatiquement quand l'application démarre."),
+         dans le cadre de notre projet de visualisation. nous nous sommes aidé de Claude  pour nous débloquer sur certains points techniques ."),
+          p("Côté technique, l'application tourne avec R Shiny qui permet de faire des applis 
+           web en R. Pour manipuler les données on a utilisé tidyverse (dplyr, ggplot2...), 
+           les graphiques interactifs sont faits avec plotly et le tableau avec DT. 
+           Pour les devises, on utilise priceR qui va chercher les taux de change 
+           automatiquement quand l'appli démarre."),
           
           h3("Auteurs"),
           p("Projet réalisé par DESJARDINS Bryan et FESTOC Julianne"),
-          p("Master 1 DSMS  Université Bretagne Sud  Vannes")
+          p("Master 1 DSMS Université Bretagne Sud Vannes")
         )
       ),
       

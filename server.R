@@ -1,5 +1,5 @@
 # ---- server.R ----
-# projet ulule - bryan desjardins et  julianne festoc
+# projet ulule - bryan desjardins et julianne festoc
 # master 1 dsms
 
 # on charge les packages
@@ -474,72 +474,6 @@ function(input, output, session) {
         plot_bgcolor = couleurs$fond,
         paper_bgcolor = couleurs$fond,
         font = list(color = couleurs$texte)
-      ) %>%
-      config(displayModeBar = FALSE)
-  })
-  
-  
-  # ---- graphique 5 : objectif vs montant levé ----
-  
-  
-  output$plot_objectif_montant <- renderPlotly({
-    
-    couleurs <- couleurs_theme()
-    
-    # on filtre les valeurs extrêmes
-    seuil_objectif <- quantile(donnees_filtrees()$objectif_eur, 0.95, na.rm = TRUE)
-    seuil_montant <- quantile(donnees_filtrees()$montant_eur, 0.95, na.rm = TRUE)
-    
-    data <- donnees_filtrees() %>%
-      filter(
-        objectif_eur > 0, 
-        objectif_eur < seuil_objectif,
-        montant_eur < seuil_montant
-      ) %>%
-      mutate(
-        succes_label = ifelse(goal_raised, "Réussie", "Échouée")
-      )
-    
-    # scatter plot avec couleur selon succès
-    plot_ly(
-      data,
-      x = ~objectif_eur,
-      y = ~montant_eur,
-      type = "scatter",
-      mode = "markers",
-      color = ~succes_label,
-      colors = c("Échouée" = "#ef4444", "Réussie" = "#10b981"),
-      marker = list(size = 6, opacity = 0.6)
-    ) %>%
-      layout(
-        xaxis = list(
-          title = "Objectif (EUR)", 
-          color = couleurs$texte,
-          gridcolor = couleurs$grille
-        ),
-        yaxis = list(
-          title = "Montant levé (EUR)", 
-          color = couleurs$texte,
-          gridcolor = couleurs$grille
-        ),
-        plot_bgcolor = couleurs$fond,
-        paper_bgcolor = couleurs$fond,
-        font = list(color = couleurs$texte),
-        legend = list(
-          orientation = "h",
-          x = 0.5,
-          xanchor = "center",
-          y = -0.15
-        ),
-        # on ajoute une ligne diagonale (objectif = montant levé)
-        shapes = list(
-          list(
-            type = "line",
-            x0 = 0, y0 = 0,
-            x1 = seuil_objectif, y1 = seuil_objectif,
-            line = list(color = "#94a3b8", dash = "dash", width = 1)
-          )
-        )
       ) %>%
       config(displayModeBar = FALSE)
   })
