@@ -951,7 +951,7 @@ function(input, output, session) {
     
     else if (is.null(var_y) || var_y == "" || var_y == "count") {
       
-      # --- BARRES (variable catégorielle) ---
+      # --- barres (variable catégorielle) ---
       if (type_graphique == "Barres") {
         
         if (var_x == "goal_raised") {
@@ -984,7 +984,7 @@ function(input, output, session) {
           config(displayModeBar = FALSE)
       }
       
-      # --- CAMEMBERT (variable catégorielle) ---
+      # --- camenbert (variable catégorielle) ---
       else if (type_graphique == "Camembert") {
         
         if (var_x == "goal_raised") {
@@ -1015,7 +1015,7 @@ function(input, output, session) {
           config(displayModeBar = FALSE)
       }
       
-      # --- HISTOGRAMME (variable numérique) ---
+      # --- histogramme (variable numérique) ---
       else if (type_graphique == "Histogramme") {
         
         valeurs <- data[[var_x]]
@@ -1037,7 +1037,7 @@ function(input, output, session) {
           config(displayModeBar = FALSE)
       }
       
-      # --- BOXPLOT (variable numérique) ---
+      # --- boxplot (variable numérique) ---
       else if (type_graphique == "Boxplot") {
         
         valeurs <- data[[var_x]]
@@ -1067,7 +1067,7 @@ function(input, output, session) {
     
     else {
       
-      # --- NUAGE DE POINTS (2 variables numériques) ---
+      # --- nuage de points (2 variables numériques) ---
       if (type_graphique == "Nuage de points") {
         
         seuil_x <- quantile(data[[var_x]], 0.95, na.rm = TRUE)
@@ -1099,7 +1099,7 @@ function(input, output, session) {
           config(displayModeBar = FALSE)
       }
       
-      # --- BOXPLOT COMPARATIF (numérique X + catégorielle Y) ---
+      # --- boxplot pour comparer (numérique X + catégorielle Y) ---
       else if (type_graphique == "Boxplot comparatif") {
         
         seuil_x <- quantile(data[[var_x]], 0.95, na.rm = TRUE)
@@ -1141,7 +1141,7 @@ function(input, output, session) {
           config(displayModeBar = FALSE)
       }
       
-      # --- BARRES MOYENNE (catégorielle X + numérique Y) ---
+      # --- barres de moyenne (catégorielle X + numérique Y) ---
       else if (type_graphique == "Barres (moyenne)") {
         
         if (var_x == "goal_raised") {
